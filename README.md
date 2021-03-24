@@ -27,11 +27,9 @@ Attempt to match a song using an externally linked video or audio file.
 ```javascript  
 audd.fromURL('https://example.com/test.mp3').then((response) => {
     // response.result is null if no match is found
-    if (response.result) {
-        console.log(`The song is ${response.result.title} by ${response.result.artist}`)
-    } else {
-        console.log('Unable to find a match');
-    }
+    const result = response.result;
+    if (result) console.log(`That song is ${result.title} by ${result.artist}`);
+    else console.log('Unable to match that song :(');
 }, console.log);
 ```  
   
@@ -40,11 +38,9 @@ The default API method. It's for the usual music recognition that works like Sha
 Attempt to match a song using a local video or audio file.  
 ```javascript  
 audd.fromFile('path/to/file.mp3').then((response) => {
-    if (response.result) {
-        console.log(`The song is ${response.result.title} by ${response.result.artist}`)
-    } else {
-        console.log('Unable to find a match');
-    }
+    const result = response.result;
+    if (result) console.log(`That song is ${result.title} by ${result.artist}`);
+    else console.log('Unable to match that song :(');
 }, console.log);
 ```  
   
