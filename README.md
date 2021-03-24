@@ -1,4 +1,4 @@
-# NPM audd.io
+# audd.io
 
 [![NPM](https://img.shields.io/npm/v/audd.io)](https://www.npmjs.com/package/audd.io) [![NPM](https://img.shields.io/npm/dt/audd.io)](https://www.npmjs.com/package/audd.io) [![NPM](https://img.shields.io/npm/types/audd.io)](https://www.npmjs.com/package/audd.io)
   
@@ -8,7 +8,9 @@ A NodeJS package used to interact with the music recognition API provided by [Au
 You can get an `api_token` for free at [https://dashboard.audd.io/](https://dashboard.audd.io/).  
 
 #### Install  
-```npm install audd.io```
+```
+npm install audd.io
+```
 
 #### Usage:   
 ```javascript
@@ -71,3 +73,7 @@ audd.guessFromFile('path/to/file.mp3').then((response) => {
     } else console.log('Unable to match any songs');
 }, console.log);
 ```
+  
+### Contributing  
+Pull requests are appreciated and welcome, please make sure you run the lint script before submitting the PR.  
+This package was made for personal use but I'd imagine it would be useful to other developers.
