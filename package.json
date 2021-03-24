@@ -1,0 +1,47 @@
+{
+  "name": "audd.io",
+  "version": "1.0.1",
+  "description": "A NodeJS package used to interact with the music recognition API provided by Audd.io",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags",
+    "test": "ts-node test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrKain/audd.io.git"
+  },
+  "keywords": [
+    "audio",
+    "audd",
+    "audd.io",
+    "music",
+    "recognition",
+    "node"
+  ],
+  "author": "Kain (ksir.pw)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DrKain/audd.io/issues"
+  },
+  "homepage": "https://github.com/DrKain/audd.io#readme",
+  "dependencies": {
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "@types/node-fetch": "^2.5.8",
+    "prettier": "^2.0.5",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.8.3"
+  }
+}
