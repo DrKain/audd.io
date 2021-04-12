@@ -2,9 +2,11 @@ import { IGuess, IResponse } from './interface';
 export declare class Audd {
     api_token: string;
     debug: boolean;
-    private uri_recognize;
-    private uri_withoffset;
+    enterprise: boolean;
     constructor(api_token?: string | null);
+    get host(): "https://enterprise.audd.io" | "https://api.audd.io";
+    get uri_recognize(): "https://enterprise.audd.io" | "https://api.audd.io";
+    get uri_withoffset(): string;
     /**
      * Logs a message to the console when debugging is enabled
      * @param message Log Message

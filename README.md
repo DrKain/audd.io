@@ -77,6 +77,16 @@ audd.guessFromFile('path/to/file.mp3').then((response) => {
 }, console.log);
 ```
 
+#### Enterprise
+
+When using an [Enterprise](https://docs.audd.io/enterprise/) key:
+
+```ts
+audd.enterprise = true;
+audd.fromFile('/path/to/file');
+// All requests will be to https://enterprise.audd.io
+```
+
 #### Extra Parameters
 
 When using an [Enterprise](https://docs.audd.io/enterprise/) key you can pass the `skip` or `every` parameters as a second argument. This should work with files and URLs.

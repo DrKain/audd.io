@@ -8,11 +8,22 @@ const fetch = require('node-fetch');
 export class Audd {
     public api_token = '';
     public debug = false;
-    private uri_recognize = 'https://api.audd.io';
-    private uri_withoffset = 'https://api.audd.io/recognizeWithOffset';
+    public enterprise = false;
 
     constructor(api_token: string | null = null) {
         if (api_token) this.api_token = api_token;
+    }
+
+    get host() {
+        return this.enterprise ? 'https://enterprise.audd.io' : 'https://api.audd.io';
+    }
+
+    get uri_recognize() {
+        return this.host;
+    }
+
+    get uri_withoffset() {
+        return this.host + '/recognizeWithOffset';
     }
 
     /**
