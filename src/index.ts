@@ -37,13 +37,15 @@ export class Audd {
             const url = this.uri_withoffset + (data.params ? '?' + data.params.toString() : '');
             this.log(`[INFO] ${data.method} : ${url}`);
 
-            fetch(url, data).then((d: any) => d.json()).then((response: IGuess) => {
-                this.log(`[INFO] Status : ${response.status}`);
-                if (response.status === 'error' && response.error) {
-                    this.log(`[ERROR] ${response.error.error_code}`);
-                    return reject(`${response.error.error_message}`);
-                } else resolve(response as IGuess);
-            }, reject);
+            fetch(url, data)
+                .then((d: any) => d.json())
+                .then((response: IGuess) => {
+                    this.log(`[INFO] Status : ${response.status}`);
+                    if (response.status === 'error' && response.error) {
+                        this.log(`[ERROR] ${response.error.error_code}`);
+                        return reject(`${response.error.error_message}`);
+                    } else resolve(response as IGuess);
+                }, reject);
         });
     }
 
@@ -60,13 +62,15 @@ export class Audd {
             const url = this.uri_recognize + (data.params ? '?' + data.params.toString() : '');
             this.log(`[INFO] ${data.method} : ${url}`);
 
-            fetch(url, data).then((d: any) => d.json()).then((response: IResponse) => {
-                this.log(`[INFO] Status : ${response.status}`);
-                if (response.status === 'error' && response.error) {
-                    this.log(`[ERROR] ${response.error.error_code}`);
-                    return reject(`${response.error.error_message}`);
-                } else resolve(response as IResponse);
-            }, reject);
+            fetch(url, data)
+                .then((d: any) => d.json())
+                .then((response: IResponse) => {
+                    this.log(`[INFO] Status : ${response.status}`);
+                    if (response.status === 'error' && response.error) {
+                        this.log(`[ERROR] ${response.error.error_code}`);
+                        return reject(`${response.error.error_message}`);
+                    } else resolve(response as IResponse);
+                }, reject);
         });
     }
 
@@ -107,6 +111,11 @@ export class Audd {
             const stream = createReadStream(file);
 
             form.append('file', stream, { knownLength: size });
+
+            for (let key of Object.keys(extra)) {
+                form.append(key, extra[key]);
+            }
+
             form.append('api_token', this.api_token);
 
             this.recognize({ body: form, method: 'POST' } as IData).then(resolve, reject);
@@ -129,10 +138,17 @@ export class Audd {
             const size = statSync(file).size;
             const stream = createReadStream(file);
 
+            for (let key of Object.keys(extra)) {
+                form.append(key, extra[key]);
+            }
+
             form.append('file', stream, { knownLength: size });
             form.append('api_token', this.api_token);
 
-            this.recognizeWithOffset({ body: form, method: 'POST' } as IData).then(resolve, reject);
+            this.recognizeWithOffset({
+                body: form,
+                method: 'POST'
+            } as IData).then(resolve, reject);
         });
     }
 
