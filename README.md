@@ -79,7 +79,7 @@ audd.guessFromFile('path/to/file.mp3').then((response) => {
 
 #### Extra Parameters
 
-When using an [Enterprise](https://docs.audd.io/enterprise/) keys you can pass the `skip` or `every` parameters as a second argument. This should work with files and URLs.
+When using an [Enterprise](https://docs.audd.io/enterprise/) key you can pass the `skip` or `every` parameters as a second argument. This should work with files and URLs.
 
 ```ts
 audd.fromFile('path/to/file', { skip: 3, every: 1 });
