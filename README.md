@@ -7,95 +7,29 @@
 A NodeJS package used to interact with the music recognition API provided by [Audd.io](https://docs.audd.io/) in the easiest way possible.  
 You can get an `api_token` for free at [https://dashboard.audd.io/](https://dashboard.audd.io/).
 
-#### Install
+### Install
 
 ```
 npm install audd.io
 ```
 
-#### Usage:
+### Usage
 
 ```javascript
 import { Audd } from 'audd.io';
+
 const audd = new Audd('api_key');
 
-audd.fromURL('web.com/file.mp3').then(console.log);
+audd.fromURL('https://audd.tech/example1.mp3').then((res) => {
+    if (res.result) {
+        console.log(res.result.title + ' by ' + res.result.artist);
+    }
+});
 ```
 
-#### fromURL(url)
+### Wiki:
 
-The default API method. It's for the usual music recognition that works like Shazam.  
-Attempt to match a song using an externally linked video or audio file.
+Full information with example responses can be found in the wiki:
 
-```javascript
-audd.fromURL('https://example.com/test.mp3').then((response) => {
-    // response.result is null if no match is found
-    const result = response.result;
-    if (result) console.log(`That song is ${result.title} by ${result.artist}`);
-    else console.log('Unable to match that song');
-}, console.log);
-```
-
-#### fromFile(file)
-
-The default API method. It's for the usual music recognition that works like Shazam.  
-Attempt to match a song using a local video or audio file.
-
-```javascript
-audd.fromFile('path/to/file.mp3').then((response) => {
-    const result = response.result;
-    if (result) console.log(`That song is ${result.title} by ${result.artist}`);
-    else console.log('Unable to match that song');
-}, console.log);
-```
-
-#### guessFromURL(url)
-
-The method for recognition by **humming/singing**. We can't guarantee any accuracy for this method.  
-Attempt to guess a song using an externally linked url.
-
-```javascript
-audd.guessFromURL('https://example.com/test.mp3').then((response) => {
-    const result = response.result;
-    if (result && result.count > 0) {
-        result.list.map((item) => console.log(`${item.title} by ${item.artist} (score: ${item.score})`));
-    } else console.log('Unable to match any songs');
-}, console.log);
-```
-
-#### guessFromFile(url)
-
-The method for recognition by **humming/singing**. We can't guarantee any accuracy for this method.  
-Attempt to match a song using a local video or audio file.
-
-```javascript
-audd.guessFromFile('path/to/file.mp3').then((response) => {
-    const result = response.result;
-    if (result && result.count > 0) {
-        result.list.map((item) => console.log(`${item.title} by ${item.artist} (score: ${item.score})`));
-    } else console.log('Unable to match any songs');
-}, console.log);
-```
-
-#### Enterprise
-
-When using an [Enterprise](https://docs.audd.io/enterprise/) key:
-
-```ts
-audd.enterprise = true;
-audd.fromFile('/path/to/file');
-// All requests will be to https://enterprise.audd.io
-```
-
-#### Extra Parameters
-
-When using an [Enterprise](https://docs.audd.io/enterprise/) key you can pass the `skip` or `every` parameters as a second argument. This should work with files and URLs.
-
-```ts
-audd.fromFile('path/to/file', { skip: 3, every: 1 });
-```
-
-### Contributing
-
-Pull requests are appreciated and welcome, please make sure you run the lint script before submitting the PR.  
-This package was made for personal use but I'd imagine it would be useful to other developers.
+Documentation for: [Enterprise Accounts](https://github.com/DrKain/audd.io/wiki/Enterprise)  
+Documentation for: [Free/Trial Accounts](https://github.com/DrKain/audd.io/wiki/Free-Trial)

@@ -105,3 +105,4 @@ dist
 
 # Test FIle
 test.ts
+examples/
