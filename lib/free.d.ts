@@ -1,7 +1,9 @@
 import { IGuess, IResponse } from './interface';
+import { Base } from './base';
 export declare class Audd {
     api_token: string;
     debug: boolean;
+    base: Base;
     constructor(api_key: string);
     get host(): string;
     get uri_recognize(): string;

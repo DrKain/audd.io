@@ -1,7 +1,9 @@
 import { IEnterpriseResponse } from './interface';
+import { Base } from './base';
 export declare class AuddEnterprise {
     private api_token;
     debug: boolean;
+    base: Base;
     constructor(api_key: string);
     get host(): string;
     private recognize;

@@ -4,4 +4,3 @@ export declare class Base {
     call(url: string, data: IData): Promise<unknown>;
     createForm(file: string, extra?: any): any;
 }
-export declare const base: Base;
