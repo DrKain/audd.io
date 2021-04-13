@@ -1,17 +1,16 @@
-import { statSync, createReadStream, existsSync } from 'fs';
+import { existsSync } from 'fs';
 import { IData, IEnterpriseResponse } from './interface';
 import { URLSearchParams } from 'url';
-import { base } from './base';
-
-const FormData = require('form-data');
+import { Base } from './base';
 
 export class AuddEnterprise {
     private api_token = '';
     public debug = false;
+    public base: Base = new Base();
 
     constructor(api_key: string) {
         this.api_token = api_key;
-        base.api_token = api_key;
+        this.base.api_token = api_key;
     }
 
     get host() {
@@ -21,7 +20,8 @@ export class AuddEnterprise {
     private recognize(data: IData): Promise<IEnterpriseResponse> {
         return new Promise((resolve, reject) => {
             const url = this.host + (data.params ? '?' + data.params.toString() : '');
-            base.call(url, data)
+            this.base
+                .call(url, data)
                 .then((res) => resolve(res as IEnterpriseResponse))
                 .catch(reject);
         });
@@ -49,7 +49,7 @@ export class AuddEnterprise {
     public fromFile(file: string, extra: any = {}): Promise<IEnterpriseResponse> {
         return new Promise((resolve, reject) => {
             if (!existsSync(file)) reject('File not found');
-            const form = base.createForm(file, extra);
+            const form = this.base.createForm(file, extra);
             this.recognize({ body: form, method: 'POST' } as IData).then(resolve, reject);
         });
     }

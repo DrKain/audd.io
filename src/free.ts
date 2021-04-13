@@ -1,7 +1,7 @@
 import { statSync, createReadStream, existsSync } from 'fs';
 import { IData, IGuess, IResponse } from './interface';
 import { URLSearchParams } from 'url';
-import { base } from './base';
+import { Base } from './base';
 
 const FormData = require('form-data');
 const fetch = require('node-fetch');
@@ -9,10 +9,11 @@ const fetch = require('node-fetch');
 export class Audd {
     public api_token = '';
     public debug = false;
+    public base: Base = new Base();
 
     constructor(api_key: string) {
         this.api_token = api_key;
-        base.api_token = api_key;
+        this.base.api_token = api_key;
     }
 
     get host() {
@@ -30,7 +31,8 @@ export class Audd {
     private recognizeWithOffset(data: IData): Promise<IGuess> {
         return new Promise((resolve, reject) => {
             const url = this.uri_withoffset + (data.params ? '?' + data.params.toString() : '');
-            base.call(url, data)
+            this.base
+                .call(url, data)
                 .then((res: any) => resolve(res as IGuess))
                 .catch(reject);
         });
@@ -39,7 +41,8 @@ export class Audd {
     private recognize(data: IData): Promise<IResponse> {
         return new Promise((resolve, reject) => {
             const url = this.uri_recognize + (data.params ? '?' + data.params.toString() : '');
-            base.call(url, data)
+            this.base
+                .call(url, data)
                 .then((res) => resolve(res as IResponse))
                 .catch(reject);
         });
@@ -72,7 +75,7 @@ export class Audd {
     public fromFile(file: string, extra: any = {}): Promise<IResponse> {
         return new Promise((resolve, reject) => {
             if (!existsSync(file)) reject('File not found');
-            const form = base.createForm(file, extra);
+            const form = this.base.createForm(file, extra);
             this.recognize({ body: form, method: 'POST' } as IData).then(resolve, reject);
         });
     }
@@ -105,7 +108,7 @@ export class Audd {
     public guessFromFile(file: string, extra: any = {}): Promise<IGuess> {
         return new Promise((resolve, reject) => {
             if (!existsSync(file)) reject('File not found');
-            const form = base.createForm(file, extra);
+            const form = this.base.createForm(file, extra);
             this.recognizeWithOffset({
                 body: form,
                 method: 'POST'

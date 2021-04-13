@@ -32,5 +32,3 @@ export class Base {
         return form;
     }
 }
-
-export const base = new Base();
