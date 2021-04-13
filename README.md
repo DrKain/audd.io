@@ -31,5 +31,5 @@ audd.fromURL('https://audd.tech/example1.mp3').then((res) => {
 
 Full information with example responses can be found in the wiki:
 
-Documentation for: [Enterprise Accounts](https://github.com/DrKain/audd.io/wiki/Enterprise)  
-Documentation for: [Free/Trial Accounts](https://github.com/DrKain/audd.io/wiki/Free-Trial)
+Documentation for: [Enterprise](https://github.com/DrKain/audd.io/wiki/Enterprise)  
+Documentation for: [Free/Trial](https://github.com/DrKain/audd.io/wiki/Free-Trial)
