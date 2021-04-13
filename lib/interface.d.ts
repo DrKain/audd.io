@@ -10,10 +10,30 @@ export interface IResponse {
     /** Contains a list of parameters you passed. Only displayed when the request fails */
     requested_params?: IParams;
 }
+export interface IEnterpriseResponse {
+    status: 'error' | 'success' | string;
+    result: IEnterpriseResult[];
+    execution_time: string;
+}
+export interface IEnterpriseResult {
+    songs: IEnterpriseGuess[];
+    offset: string;
+}
 export interface IGuess {
     status: 'error' | 'success' | string;
     error?: IError;
     result: IGuessResult | null;
+}
+export interface IEnterpriseGuess {
+    score: number;
+    artist: string;
+    title: string;
+    album: string;
+    release_date: string;
+    label: string;
+    isrc: string;
+    upc: string;
+    song_link: string;
 }
 interface IGuessResult {
     underground: string;

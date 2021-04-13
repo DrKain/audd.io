@@ -1,6 +1,6 @@
 {
     "name": "audd.io",
-    "version": "1.0.6",
+    "version": "2.0.0",
     "description": "A NodeJS package used to interact with the music recognition API provided by Audd.io",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
