@@ -20,16 +20,15 @@ import { Audd } from 'audd.io';
 
 const audd = new Audd('api_key');
 
-audd.fromURL('https://audd.tech/example1.mp3').then((res) => {
-    if (res.result) {
-        console.log(res.result.title + ' by ' + res.result.artist);
-    }
-});
+audd.recognize.fromURL('https://example.com/test.mp3');
+// or
+audd.recognize.fromFile('test.mp3');
 ```
 
-### Wiki:
+### Documentation:
 
-Full information with example responses can be found in the wiki:
+Each endpoint contains `fromFile` and `fromURL`, they return different information based on what endpoint you use.
 
-Documentation for: [Enterprise](https://github.com/DrKain/audd.io/wiki/Enterprise)  
-Documentation for: [Free/Trial](https://github.com/DrKain/audd.io/wiki/Free-Trial)
+[audd.enterprise](https://github.com/DrKain/audd.io/wiki/Enterprise)  
+[audd.recognize](https://github.com/DrKain/audd.io/wiki/Recognize)  
+[audd.recognizeWithOffset](https://github.com/DrKain/audd.io/wiki/RecognizeWithOffset)

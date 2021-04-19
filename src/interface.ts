@@ -1,5 +1,23 @@
 import { URLSearchParams } from 'url';
 
+export interface IExtra {
+    /** Set to "true" to get accurate start and end offsets of the recognized tracks */
+    accurate_offsets?: string;
+    /** How many 12 seconds chunks are skipped after the ones that are recognized */
+    skip?: number;
+    /** How many chunks should be recognized in a row */
+    every?: number;
+    /** The upper bound for the number of chunks the server will recognize */
+    limit?: number;
+    /** How many chunks the server should skip before the first one to be recognized */
+    skip_first?: number;
+    /** Set to "true" if the URL links not to a file, but to a page that contains video or audio */
+    process_content?: string;
+    /** Set to "true" if you want the server to add the time represented in "t", "time_continue", or "start" parameters of the URL, if one exists, devided by 12 to the skip_first */
+    use_timecode?: string;
+    [index: string]: any;
+}
+
 export interface IResponse {
     /** error or success. Determines if the request was successful */
     status: 'error' | 'success' | string;
