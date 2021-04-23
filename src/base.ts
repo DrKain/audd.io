@@ -46,7 +46,8 @@ export class Base<T> {
             if (this.api_token === '') return reject('api_token not set');
             fetch(url, data)
                 .then((d: any) => d.json())
-                .then((res: any) => resolve(res), reject);
+                .then((res: any) => resolve(res))
+                .catch(reject);
         });
     }
 
