@@ -17,6 +17,7 @@ npm install audd.io
 
 ```javascript
 import { Audd } from 'audd.io';
+// const Audd = require('audd.io').Audd;
 
 const audd = new Audd('api_key');
 
